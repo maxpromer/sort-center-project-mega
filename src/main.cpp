@@ -154,39 +154,4 @@ void loop() {
   Serial.println("Unknow, press somethings to continual");
   while(Serial.read() == -1) delay(100);
   return;
-  
-
-  return;
-  if (SENSOR_IS_FOUND(SENSOR_C_PIN)) {
-    Serial.println("Found");
-    uint32_t start = millis();
-    while(SENSOR_IS_FOUND(SENSOR_C_PIN)) delay(10);
-    uint16_t using_time = millis() - start;
-    Serial.print("Using ");
-    Serial.println(using_time);
-    if ((using_time >= (1200 - 200)) && (using_time <= (1200 + 200))) { // กล่อง 00
-      Serial.println("Box size is 00");
-      delay(1100);
-    } else if ((using_time >= (1500 - 200)) && (using_time <= (1500 + 200))) { // กล่อง AA
-      Serial.println("Box size is AA");
-      delay(800);
-    } else if ((using_time >= (2150 - 200)) && (using_time <= (2150 + 200))) { // กล่อง B
-      Serial.println("Box size is B");
-      delay(500);
-    } else if ((using_time >= (2700 - 200)) && (using_time <= (2700 + 200))) { // กล่อง C
-      Serial.println("Box size is C");
-      delay(300);
-    }
-    Serial.println("Stop !");
-    // MOTOR_OFF();
-    SOLENOID_OPEN(SOLENOID_C_PIN);
-    delay(500);
-    SOLENOID_CLOSE(SOLENOID_C_PIN);
-    while(Serial.read() == -1) delay(100);
-  } else {
-    Serial.println("Not found");
-    MOTOR_ON();
-  }
-
-  delay(300);
 }
